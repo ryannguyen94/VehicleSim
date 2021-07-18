@@ -6,28 +6,29 @@
  */
 
 #include <iostream>
-#include "wheel.hpp"
+#include <fstream>
+#include <cmath>
+#include <Eigen/Dense>
+#include "simple_vehicle.hpp"
 
 using namespace std;
 
 int main()
 {
 	cout << "Hello world!\n";
-	magicFormula mf = {2.5, 1.28, 20.9};
-	float radius = 0.5;
-	float inertia = 1.0;
-	float mass = 2;
-	float B = 0.1;
-	float ts = 0.01;
-	Wheel* wheel;
-	wheel = new Wheel(mf, radius, inertia, mass, B, ts, 0, 0/0.5);
+	float dt = 0.01;
+	SimpleVehicle vehicle(10.0, 0.0, 0.0, dt);
+	ofstream log("log.csv");
+	log << "\"speed\",\"yaw\",\"yaw_rate\",\"steering_angle\",\"x\",\"y\"" << endl;
 
 	for (int i = 0; i < 1000; i++)
 	{
-		wheel->step(20, 100);
-		printf("speed: %f, angular speed: %f, slip: %f\n", wheel->v, wheel->w, wheel->slip);
+		inputs_t inputs;
+		inputs.steering_angle = 30.0 / 180.0 * M_PI * cos(2.0 * M_PI * 0.25 * i * dt);
+		vehicle.step(inputs);
+		log << vehicle.v << "," << vehicle.yaw << "," << vehicle.yaw_rate << "," << vehicle.inputs.steering_angle <<
+			   "," << vehicle.x << "," << vehicle.y << endl;
 	}
 
-	delete wheel;
 	return 0;
 }
