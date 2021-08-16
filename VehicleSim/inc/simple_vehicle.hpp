@@ -11,11 +11,10 @@ typedef struct
 class SimpleVehicle {
     public:
         inputs_t inputs;
-        float v, yaw_rate, yaw, dt, x, y;
+        float v, yaw_rate, yaw, dt, x, y, w;
         SimpleVehicle(float vx, float yaw_rate, float yaw, float dt);
         void step(inputs_t inputs);
     protected:
-        float w;
         float cof;
         float calcYawRate();
         Filter yaw_intent;

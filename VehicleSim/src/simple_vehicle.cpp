@@ -14,7 +14,7 @@ SimpleVehicle::SimpleVehicle(
       x(0.0),
       y(0.0),
       cof(1.0),
-      yaw_intent(Filter(1.0, dt, yaw_rate))
+      yaw_intent(Filter(5.0, dt, yaw_rate))
 {
     this->w = 3.449;
 }
@@ -25,8 +25,8 @@ void SimpleVehicle::step(inputs_t inputs)
     this->inputs = inputs;
     this->yaw_rate = calcYawRate();
     this->yaw += this->yaw_rate * this->dt;
-    this->x += this->v * cos(this->yaw);
-    this->y += this->v * sin(this->yaw);
+    this->x += this->v * cos(this->yaw) * this->dt;
+    this->y += this->v * sin(this->yaw) * this->dt;
 }
 
 float SimpleVehicle::calcYawRate()

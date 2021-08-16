@@ -25,7 +25,10 @@ fig = make_subplots(rows=number_of_subplots, cols=1, shared_xaxes=True, vertical
 dt = 0.01
 t_array = np.linspace(0, dt*(row_cnt - 1), row_cnt)
 for i in range(len(header)):
-    fig.add_trace(go.Scatter(x=t_array, y=data[header[i]], name=header[i]), row=i+1, col=1)
+    if i != 3:
+        fig.add_trace(go.Scatter(x=t_array, y=data[header[i]], name=header[i]), row=i+1, col=1)
+    else:
+        fig.add_trace(go.Scatter(x=t_array, y=np.degrees(data[header[i]]), name=header[i]), row=i + 1, col=1)
 
 # fig.update_yaxes(title_text="kph", row=1, col=1)
 fig.update_xaxes(showspikes=True, spikecolor="green", spikesnap="cursor", spikemode="across")

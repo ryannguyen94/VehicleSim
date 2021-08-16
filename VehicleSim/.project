@@ -24,4 +24,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>eigen-eigen-323c052e1731</name>
+			<type>2</type>
+			<location>C:/VS_KalmanFilter/KalmanFilter/KalmanFilter/eigen-eigen-323c052e1731</location>
+		</link>
+	</linkedResources>
 </projectDescription>
